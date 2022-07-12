@@ -1,0 +1,122 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{{ ckeditor.load() }}
+<!-- Page Header -->
+<header class="masthead mb-0" style="background-image: url('{{ url_for('static', filename='img/home-bg.jpg') }}')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          {% if request.path == "/edit/0" %}
+          <h1>Add Post</h1>
+          {% else %}
+          <h1>Edit Post</h1>
+          {% endif %}
+          <span class="subheading">Manage your posts</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Message flashing -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+  {{ message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+
+      <h1 style="margin-top: 4rem;">Basic Actions</h1>
+
+      <a href="/dashboard"> <button class="btn btn-primary"> Dashboard Home</button></a>
+      <a href="/logout"> <button class="btn btn-primary"> Logout</button></a>
+      <hr>
+      {% if request.path == "/edit/0" %}
+      <h1>Add Post</h1>
+      {% else %}
+      <h1>Edit Post</h1>
+      {% endif %}
+
+      <form name="sentMessage" id="contactForm" action="/edit/{{sno}}" method="post" enctype="multipart/form-data"
+        novalidate>
+
+        <!-- Image Area -->
+        <div class="form-group">
+          <dl>
+            <p>
+              <label>Select image</label>
+              <input type="file" class="form-control" name="image" id="image" autocomplete="off">
+              <!-- <p class="help-block text-danger"></p> -->
+            </p>
+          </dl>
+
+        </div>
+
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Title</label>
+            <input type="text" class="form-control" placeholder="Title" id="title" name='title' required
+              data-validation-required-message="Please enter the post title" value="{{post.title}}">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Tagline</label>
+            <input type="text" class="form-control" placeholder="Tagline" id="tline" name="tline" required
+              data-validation-required-message="Please enter the post tagline" value="{{post.tagline}}">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group col-xs-12 floating-label-form-group controls">
+            <label>Slug</label>
+            <input type="text" class="form-control" placeholder="Slug" name="slug" id="slug" required
+              data-validation-required-message="Please enter post slug" value="{{post.slug}}">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>content</label>
+            <!-- {{ ckeditor.create(value = post.content) }} -->
+            <textarea rows="5" class="form-control" placeholder="Content" name="content" id="content" required
+              data-validation-required-message="Please enter the post content">{{post.content}}</textarea>
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+
+        <!-- <div class="control-group">
+          <div class="form-group floating-label-form-group controls">
+            <label>Image File</label>
+            <input class="form-control" placeholder="Image Filename" name="img_file" id="img_file"
+              value="{{post.img_file}}">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div> -->
+
+        <br>
+        <div id="success"></div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Submit</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

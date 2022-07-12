@@ -1,0 +1,56 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link href="{{ url_for('static', filename='css/animated.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{url_for('.static', filename='css/signin.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container animated bounceIn">
+
+  <form class="form-signin" method="POST" action="/login">
+    {% set fname = 'img/'+ login_image %}
+
+    <center>
+      <img class="mb-4" src="{{url_for('static', filename=fname)}}" alt="" width="100" height="100">
+    </center>
+    {{ form.hidden_tag() }}
+    {{ wtf.form_field(form.username) }}
+    {{ wtf.form_field(form.password) }}
+    {{ wtf.form_field(form.remember) }}
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <h4>Not a member yet? <a href="{{ url_for('signup') }}">Sign Up</a></h4>
+    <p style="text-align: center; font-weight:700;">
+      OR
+    </p>
+
+    <!-- Message flashing -->
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %} -->
+  </form>
+
+  {% set signInBtnName = 'img/'+ sign_in_btn_name %}
+  <center>
+    <a href='/oAuthLogin' style="text-decoration: none;">
+      <img class="signin-btn" src="{{url_for('static', filename=signInBtnName)}}" alt="Sign In With Google">
+    </a>
+  </center>
+
+</div> <!-- /container -->
+{% endblock %}

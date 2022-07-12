@@ -1,0 +1,22 @@
+{
+  "params": {
+    "local_server": "True",
+    "local_uri": "mysql://root:@localhost/techbytes",
+    "prod_uri": "mysql://root:@localhost/techbytes",
+    "fb_url": "https://facebook.com/techbytes",
+    "tw_url": "https://twitter.com/techbytes",
+    "gh_url": "https://github.com/techbytes",
+    "blog_name": "Tech Bytes",
+    "tag_line": "Your daily dosage of Technology",
+    "gmail-user": "your-test-email-id",
+    "gmail-password": "your-test-email-account-password",
+    "secret-key": "your-super-secret-key",
+    "google-client-id": "<your google client id>",
+    "random-password-length": 10,
+    "about_text": "Hi my name is <your-name>. I am a tech enthusiast. I love coding and building websites. When I am not doing those i play 🏀 and eat 🍕 ;)",
+    "no_of_posts": 3,
+    "login_image": "login.png",
+    "signInBtnName": "btn_signIn_google.png",
+    "upload_location": "<location-where-repo-is-extracted>\\TechBytes\\static\\postImg"
+  }
+}

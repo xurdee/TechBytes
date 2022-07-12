@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<header class="masthead" style="background-color: black;">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-2 text-center">
+                <img src="{{ url_for('static', filename='img/404.png') }}" class="img-fluid" style="width: 80%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);" alt="404 error img">
+            </div>
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="page-heading">
+                    <h1>Error 404</h1>
+                    <span class="subheading">The page you were looking for does not exist. Click <a style="color:coral;"
+                            href="/">here</a> to
+                        return to the Home Page</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock %}
